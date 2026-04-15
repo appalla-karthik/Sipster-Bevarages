@@ -287,9 +287,9 @@ function FlavorLineup() {
       </div>
 
       <div className="flavor-lineup__desktop-actions">
-        <p className="flavor-lineup__name">Sipster Coke Zero</p>
-        <p className="flavor-lineup__name">Sipster Coke Vanilla</p>
         <p className="flavor-lineup__name">Sipster Coke Classic</p>
+        <p className="flavor-lineup__name">Sipster Coke Vanilla</p>
+        <p className="flavor-lineup__name">Sipster Coke Zero</p>
       </div>
 
       <div className="flavor-lineup__mobile-actions">
