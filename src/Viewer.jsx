@@ -1,11 +1,12 @@
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { useGLTF, useTexture } from '@react-three/drei';
-import { SRGBColorSpace } from 'three';
+import { MathUtils, SRGBColorSpace } from 'three';
 
 const Model = ({ url, coords, labelTextureUrl }) => {
   const { scene } = useGLTF(url);
   const labelTexture = useTexture(labelTextureUrl);
+  const modelScale = MathUtils.clamp(coords.scale ?? 1, 1, 1.14);
 
   const modelScene = useMemo(() => {
     const clonedScene = scene.clone(true);
@@ -73,6 +74,7 @@ const Model = ({ url, coords, labelTextureUrl }) => {
       <group
         position={[coords.position.x, coords.position.y, coords.position.z]}
         rotation={[coords.rotation.x, coords.rotation.y, coords.rotation.z]}
+        scale={modelScale}
       >
         <primitive object={modelScene} />
       </group>
@@ -139,29 +141,35 @@ const Viewer = ({ glbUrl, defaultCoords, labelTextureUrl }) => {
         near: 0.1,
         far: 10,
       }}
-      dpr={window.devicePixelRatio}
+      dpr={[1, 2]}
+      gl={{ antialias: true, toneMappingExposure: 1.4 }}
       style={{ width: '100vw', height: '100vh' }}
     >
-      <ambientLight intensity={0.4} />
-      <directionalLight position={[0, 5, -5]} intensity={3} />
-      <directionalLight position={[0, -3, 5]} intensity={1} />
+      <ambientLight intensity={0.65} />
+      <directionalLight position={[0, 5, -5]} intensity={4.2} />
+      <directionalLight position={[0, -3, 5]} intensity={1.5} />
+      <pointLight position={[0, 2, 0.5]} intensity={1.2} />
       <spotLight
         position={[-5, 5, 5]}
         angle={0.3}
         penumbra={1}
-        intensity={1}
+        intensity={1.5}
         castShadow
       />
       <spotLight
         position={[5, 5, -5]}
         angle={0.3}
         penumbra={1}
-        intensity={1}
+        intensity={1.2}
         castShadow
       />
 
       <Suspense fallback={null}>
-        <Model coords={coords} labelTextureUrl={labelTextureUrl} url={glbUrl} />
+        <Model
+          coords={coords}
+          labelTextureUrl={labelTextureUrl}
+          url={glbUrl}
+        />
       </Suspense>
     </Canvas>
   );
