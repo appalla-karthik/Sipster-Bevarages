@@ -825,6 +825,14 @@ html.lenis body {
   font-size: 1rem;
 }
 
+.flavor-lineup__mobile-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+}
+
 @media (max-width: 1100px) {
   .site-header {
     flex-wrap: wrap;
@@ -954,6 +962,8 @@ html.lenis body {
 
   .flavor-lineup__mobile-actions {
     display: flex;
+    min-height: 28vh;
+    padding: 0 1rem 1.25rem;
   }
 
   .flavor-lineup__name {
@@ -962,15 +972,19 @@ html.lenis body {
     font-size: 0.96rem;
   }
 
+  .flavor-lineup__name--stacked {
+    max-width: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+  }
+
   .flavor-lineup__footer-copy {
-    flex-direction: column;
-    gap: 0.6rem;
-    padding: 0 1rem 1.5rem;
+    gap: 0;
+    padding: 0 1rem 1.15rem;
   }
 
   .flavor-lineup__footer-copy h2 {
-    max-width: none;
-    font-size: 0.82rem;
+    display: none;
   }
 
   .flavor-stage {

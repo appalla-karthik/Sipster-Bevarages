@@ -196,7 +196,8 @@ function LineupScene() {
     const media = gsap.matchMedia();
 
     media.add('(max-width: 1240px)', () => {
-      gsap.set(canRef.current.position, { z: 0.5 });
+      gsap.set(canRef.current.position, { x: 0, y: 0.25, z: 0.5 });
+      gsap.set(canRef.current.rotation, { z: -0.12, y: 0 });
       gsap.set(canTwoRef.current.position, { y: -5 });
       gsap.set(canThreeRef.current.position, { y: -5 });
 
@@ -204,18 +205,18 @@ function LineupScene() {
         scrollTrigger: {
           trigger: '#fifth-section',
           start: 'top bottom',
-          end: 'bottom -15%',
-          scrub: 0.35,
+          end: 'bottom -28%',
+          scrub: 0.3,
         },
       });
 
       lastSectionMobileTimeline
-        .to(canRef.current.position, { x: 0, y: 3.05, z: -1.85 }, 0)
-        .to(canRef.current.rotation, { z: -0.24, y: 0.08 }, 0)
-        .to(canTwoRef.current.position, { y: 2.95, x: 0.98, z: -2.2 }, 0)
-        .to(canTwoRef.current.rotation, { z: -0.22, y: 0.22 }, 0)
-        .to(canThreeRef.current.position, { y: 2.9, x: -0.98, z: -2.7 }, 0)
-        .to(canThreeRef.current.rotation, { z: 0.22, y: -0.22 }, 0);
+        .to(canRef.current.position, { x: 0, y: 1.25, z: -1.2 }, 0)
+        .to(canRef.current.rotation, { z: -0.18, y: 0.06 }, 0)
+        .to(canTwoRef.current.position, { y: 0.95, x: 1.05, z: -1.45 }, 0)
+        .to(canTwoRef.current.rotation, { z: -0.18, y: 0.2 }, 0)
+        .to(canThreeRef.current.position, { y: 0.98, x: -1.05, z: -1.75 }, 0)
+        .to(canThreeRef.current.rotation, { z: 0.18, y: -0.2 }, 0);
     });
 
     media.add('(min-width: 1241px)', () => {
@@ -287,22 +288,22 @@ function FlavorLineup() {
       </div>
 
       <div className="flavor-lineup__desktop-actions">
-        <p className="flavor-lineup__name">Sipster Coke Classic</p>
-        <p className="flavor-lineup__name">Sipster Coke Vanilla</p>
         <p className="flavor-lineup__name">Sipster Coke Zero</p>
+        <p className="flavor-lineup__name">Sipster Coke Vanilla</p>
+        <p className="flavor-lineup__name">Sipster Coke Classic</p>
       </div>
 
       <div className="flavor-lineup__mobile-actions">
-        <p className="flavor-lineup__name flavor-lineup__name--stacked">
-          Sipster Coke Zero / Vanilla / Classic
-        </p>
+        <div className="flavor-lineup__mobile-list">
+          <p className="flavor-lineup__name flavor-lineup__name--stacked">Sipster Coke Zero</p>
+          <p className="flavor-lineup__name flavor-lineup__name--stacked">Sipster Coke Vanilla</p>
+          <p className="flavor-lineup__name flavor-lineup__name--stacked">Sipster Coke Classic</p>
+        </div>
       </div>
 
       <div className="flavor-lineup__footer-copy">
-        <h2>
-          
-        </h2>
-        <h2></h2>
+        <h2>Designed in Figma, with 3D models created in Blender, and animated using GSAP and React Three Fiber in React.</h2>
+        <h2>Visit the GitHub page for more technical details.</h2>
       </div>
     </div>
   );
